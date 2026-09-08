@@ -256,3 +256,26 @@ it("retains the actual supported integer flag without interpreting arbitrary val
 		supported: 0,
 	});
 });
+
+it("includes explicit reference authors and untested-build provenance", async () => {
+	const result = await getOperatorCatalog(bridge(), {});
+	expect(
+		result.community.map(({ id, author, testedBuilds }) => ({
+			author,
+			id,
+			testedBuilds,
+		})),
+	).toEqual([
+		{ author: "Derivative", id: "op-snippets", testedBuilds: [] },
+		{ author: "Derivative", id: "palette", testedBuilds: [] },
+		{
+			author: "Daniel Molnar (Function Store)",
+			id: "function-store",
+			testedBuilds: [],
+		},
+		{ author: null, id: "olib", testedBuilds: [] },
+	]);
+	expect(
+		result.community.every((reference) => reference.autoImport === false),
+	).toBe(true);
+});

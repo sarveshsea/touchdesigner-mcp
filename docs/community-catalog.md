@@ -8,7 +8,7 @@ The catalog unions the runtime `families` and optional `opTypes` collections. It
 
 ## Offline documentation
 
-The caller must authorize and supply an explicit absolute `docRoot` pointing to the installed offline help directory. The public service must not accept an arbitrary filesystem root from an unauthenticated request. The catalog has no ambient filesystem search, home-directory discovery or path supplied through its query.
+`docRoot` is a low-level internal catalog option, not a public tool parameter. The daemon obtains the installed offline-help directory only from the explicit `TD_ARCHITECTURE_DOC_ROOT` environment setting. The public `get_td_operator_catalog` tool rejects `docRoot`; queries never select filesystem roots. Internal callers must authorize the absolute directory before passing it. The catalog has no ambient filesystem search or home-directory discovery.
 
 Indexing reads only `.htm`, `.html` and `.md` files under that root. Symlink roots, ancestor links and linked entries are rejected/skipped. Bounds are 1,024 directory entries, 256 documents, four nested directory levels, 32 KiB per file and 1 MiB total input. The cache holds at most four roots for five minutes. Bounds produce `truncated: true` when the traversal stops; the index is a bounded aid, not complete installed-help coverage.
 
@@ -22,6 +22,8 @@ Results contain relative filenames, short plain-text titles and summaries. They 
 | [TouchDesigner Palette](https://docs.derivative.ca/Palette) | Find reusable components and learning examples. | Check the selected component and included notices. |
 | [FunctionStore_tools](https://github.com/function-store/FunctionStore_tools) | Study workflow, operator placement and authoring tools. | The repository is MIT; verify the exact version and bundled component licenses before reuse. |
 | [Olib](https://olib.amb-service.net/) | Discover community components. | Licenses are per component; a catalog listing does not grant blanket redistribution permission. |
+
+Each record includes an explicit `author` and `testedBuilds`. Derivative is credited for OP Snippets and the Palette; Daniel Molnar (Function Store) is credited for FunctionStore_tools. Olib attribution remains `null` here rather than being guessed. All four `testedBuilds` arrays are empty: these are discovery references, and no component/build compatibility test is claimed.
 
 These records are links and brief original summaries. Opening a reference is distinct from installing it. No download, `.tox` import, self-update or dependency installation is triggered by catalog discovery. Test selected components in an isolated project, record their version/license, and measure their behavior on the target build before incorporating them.
 
