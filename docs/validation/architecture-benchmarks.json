@@ -1,0 +1,51 @@
+{
+  "arch": "arm64",
+  "generatedAt": "2026-09-08T14:42:01.397Z",
+  "kind": "synthetic-cpu-paginated-graph-classifier",
+  "liveTouchDesignerMeasured": false,
+  "nodeVersion": "v22.22.3",
+  "platform": "darwin",
+  "pythonBridgeExecutionMeasured": false,
+  "results": [
+    {
+      "bridgeCalls": 12,
+      "classifyMs": 11,
+      "collectMs": 31,
+      "complete": true,
+      "dependencyComplete": true,
+      "diffMs": 1,
+      "edges": 2007,
+      "heapDeltaMiB": 2,
+      "nodes": 1000,
+      "rssMiB": 98,
+      "totalMs": 43
+    },
+    {
+      "bridgeCalls": 102,
+      "classifyMs": 63,
+      "collectMs": 90,
+      "complete": true,
+      "dependencyComplete": true,
+      "diffMs": 7,
+      "edges": 20097,
+      "heapDeltaMiB": 27,
+      "nodes": 10000,
+      "rssMiB": 149,
+      "totalMs": 161
+    },
+    {
+      "bridgeCalls": 506,
+      "classifyMs": 263,
+      "collectMs": 356,
+      "complete": true,
+      "dependencyComplete": true,
+      "diffMs": 38,
+      "edges": 100497,
+      "heapDeltaMiB": 118,
+      "nodes": 50000,
+      "rssMiB": 275,
+      "totalMs": 657
+    }
+  ],
+  "schemaVersion": 1
+}

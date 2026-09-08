@@ -175,7 +175,7 @@ describe("HTTP Transport Integration", () => {
 		expect(response.status).toBe(200);
 		const body = await response.json();
 		expect(Array.isArray(body.result?.tools)).toBe(true);
-		expect(body.result?.tools).toHaveLength(16);
+		expect(body.result?.tools).toHaveLength(23);
 		expect(body.result?.resultType).toBe("complete");
 		expect(body.result?.ttlMs).toBe(0);
 		expect(body.result?.cacheScope).toBe("private");

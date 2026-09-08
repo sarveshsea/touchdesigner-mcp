@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Live owned-fixture graph benchmark receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "liveTouchDesignerMeasured",
+    "fpsMeasured",
+    "projectSaved",
+    "fixtureCookingDisabled",
+    "generatedAt",
+    "limits",
+    "results"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "kind": {
+      "const": "live-owned-fixture-graph-census"
+    },
+    "liveTouchDesignerMeasured": {
+      "const": true
+    },
+    "fpsMeasured": {
+      "const": false
+    },
+    "projectSaved": {
+      "const": false
+    },
+    "fixtureCookingDisabled": {
+      "const": true
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batchSize",
+        "pageSize",
+        "maxDurationMs",
+        "maxMetadataBytes",
+        "scope",
+        "dependencyClosure"
+      ],
+      "properties": {
+        "batchSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "pageSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "maxDurationMs": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 3600000
+        },
+        "maxMetadataBytes": {
+          "const": 134217728
+        },
+        "scope": {
+          "const": "owned_fixture_only"
+        },
+        "dependencyClosure": {
+          "const": "not_certified_for_enclosing_project"
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/result"
+      }
+    }
+  },
+  "$defs": {
+    "diagnostics": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "sampledOperators",
+        "fixtureCookingDisabled",
+        "rootCpuCookMs",
+        "rootChildrenCpuCookMs",
+        "sampledCpuCookMsSum",
+        "sampledTotalCooks",
+        "sampledCpuBytes",
+        "sampledGpuBytes"
+      ],
+      "properties": {
+        "sampledOperators": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "fixtureCookingDisabled": {
+          "type": "boolean"
+        },
+        "rootCpuCookMs": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "rootChildrenCpuCookMs": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sampledCpuCookMsSum": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sampledTotalCooks": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sampledCpuBytes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sampledGpuBytes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observedNodes",
+        "observedEdges",
+        "cleanupCalls",
+        "collectionCalls",
+        "bridgeRoundTripMs",
+        "pythonTimingSamples",
+        "totalMs",
+        "fixtureCreated",
+        "cleanupComplete",
+        "complete",
+        "dependencyComplete",
+        "requestedNodes",
+        "status",
+        "failureCode",
+        "graphStatus",
+        "build",
+        "collectionMs",
+        "pythonScanMs",
+        "diagnosticBefore",
+        "diagnosticAfter"
+      ],
+      "properties": {
+        "observedNodes": {
+          "type": "number",
+          "minimum": 0
+        },
+        "observedEdges": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cleanupCalls": {
+          "type": "number",
+          "minimum": 0
+        },
+        "collectionCalls": {
+          "type": "number",
+          "minimum": 0
+        },
+        "bridgeRoundTripMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pythonTimingSamples": {
+          "type": "number",
+          "minimum": 0
+        },
+        "totalMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fixtureCreated": {
+          "type": "boolean"
+        },
+        "cleanupComplete": {
+          "type": "boolean"
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "dependencyComplete": {
+          "type": "boolean"
+        },
+        "requestedNodes": {
+          "enum": [
+            1000,
+            10000
+          ]
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed"
+          ]
+        },
+        "failureCode": {
+          "enum": [
+            null,
+            "setup_failed",
+            "collection_failed",
+            "collection_incomplete",
+            "cleanup_failed"
+          ]
+        },
+        "graphStatus": {
+          "enum": [
+            "unavailable",
+            "fresh",
+            "stale",
+            "scanning",
+            "disconnected"
+          ]
+        },
+        "build": {
+          "type": "string",
+          "pattern": "^(?:unknown|[0-9]{4}\\.?[0-9]{1,10})$"
+        },
+        "collectionMs": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "pythonScanMs": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "diagnosticBefore": {
+          "$ref": "#/$defs/diagnostics"
+        },
+        "diagnosticAfter": {
+          "$ref": "#/$defs/diagnostics"
+        }
+      }
+    }
+  }
+}

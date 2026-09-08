@@ -1,0 +1,15 @@
+{
+  "build": "2025.33230",
+  "cleanExport": true,
+  "inertReimport": true,
+  "sourceVerified": true,
+  "clientEmpty": true,
+  "operatorErrors": 0,
+  "docked": true,
+  "clickToFocus": true,
+  "binary": {
+    "bytes": 30550,
+    "path": "inspector.tox",
+    "sha256": "5bbd78b6cf8a6047f8ad3736a8f7270d16b36796c1fb093f48df4f778fa8a30a"
+  }
+}

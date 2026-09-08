@@ -2,7 +2,9 @@
 
 An open-source authoring fork maintained by [sarveshsea](https://github.com/sarveshsea), built on [8beeeaaat’s MIT-licensed project](https://github.com/8beeeaaat/touchdesigner-mcp). Original attribution and license are retained.
 
-**New:** bounded network snapshots, preview-first coordinate layouts, and non-destructive temporary image capture. See the [fork installation and developer guide](docs/set-design.md) and [GitHub releases](https://github.com/sarveshsea/touchdesigner-mcp/releases). This fork is distributed through GitHub; upstream npm commands below install upstream.
+**Architecture preview:** build-aware operator discovery, explainable classification, watched project maps, a native inspector, local memory and guarded working-copy refactor previews. The original snapshot, layout and image tools remain available. See the [architecture service guide](docs/architecture-service.md), [migration guide](docs/migration-architecture.md), and [validation status](docs/validation/architecture-status.md). See the [fork installation and developer guide](docs/set-design.md) and [GitHub releases](https://github.com/sarveshsea/touchdesigner-mcp/releases). This fork is distributed through GitHub; upstream npm commands below install upstream.
+
+**Preview limits:** native create/rename/rewire/delete/undo changes were visible in 2.4–10.6 seconds in the measured session, missing the two-second target. A whole-root scan failed after 9,097 operators. Stock projects exceed the current staging read-set limit and retain opaque dependencies; working-copy encapsulation is not supported for those projects in this release.
 
 [![Fork CI](https://github.com/sarveshsea/touchdesigner-mcp/actions/workflows/development.yml/badge.svg)](https://github.com/sarveshsea/touchdesigner-mcp/actions/workflows/development.yml)
 [![GitHub prerelease](https://img.shields.io/github/v/release/sarveshsea/touchdesigner-mcp?include_prereleases)](https://github.com/sarveshsea/touchdesigner-mcp/releases)
@@ -53,6 +55,23 @@ Tools allow AI agents to perform actions in TouchDesigner.
 | `update_td_node_parameters` | Updates the parameters of a specific node.                     |
 | `get_td_network_snapshot` | Bounded read-only hierarchy, wires, layout and diagnostics. |
 | `layout_td_network` | Preview-first grid layout; coordinates only, one COMP at a time. |
+| `get_td_operator_catalog` | Discover build-specific registered operators, support evidence and bounded reference links. |
+| `map_td_project` | Refresh, watch, inspect or diff a bounded project graph with explicit freshness. |
+| `classify_td_network` | Explain operator roles and propose deterministic pinned layouts without moving nodes. |
+| `plan_td_refactor` | Preview grouping siblings with complete dependency checks and explicit blockers. |
+| `stage_td_refactor` | Apply a reviewed refactor plan or recover its durable transaction status. |
+| `get_td_memory` | Read bounded architecture notes with provenance and freshness. |
+| `record_td_memory` | Record, correct, retire or explicitly promote a project architecture note. |
+
+For a long whole-project dependency census, start a background job and inspect its status:
+
+```js
+map_td_project({ action: 'refresh', rootPath: '/', dependencyAnalysis: true,
+  wait: false, maxDurationMs: 3600000 });
+map_td_project({ action: 'status', rootPath: '/', summaryOnly: true });
+```
+
+Background refresh returns `accepted`, `jobId` and progress. The service permits one scan per root and two concurrent scans; status includes the graph and job. `wait` defaults to `true`, and the default scan budget remains 60 seconds. A larger budget does not guarantee completion. Retrieve completed graph pages with `offset`/`limit` and follow `nextOffset`; use `summaryOnly` for lightweight monitoring.
 
 ### Prompts
 

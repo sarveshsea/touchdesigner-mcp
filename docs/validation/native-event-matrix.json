@@ -1,0 +1,59 @@
+{
+  "build": "2025.33230",
+  "rootScope": "owned synthetic fixture in project1",
+  "events": [
+    {
+      "event": "initial",
+      "passed": true,
+      "visibleAfterMs": 15,
+      "revision": 1
+    },
+    {
+      "event": "creation",
+      "passed": true,
+      "visibleAfterMs": 2459,
+      "revision": 2
+    },
+    {
+      "event": "rename",
+      "passed": true,
+      "visibleAfterMs": 4702,
+      "revision": 3
+    },
+    {
+      "event": "wire",
+      "passed": true,
+      "visibleAfterMs": 7616,
+      "revision": 4
+    },
+    {
+      "event": "rewire",
+      "passed": true,
+      "visibleAfterMs": 10555,
+      "revision": 5
+    },
+    {
+      "event": "undo_prepare",
+      "passed": true,
+      "visibleAfterMs": 9377,
+      "revision": 6
+    },
+    {
+      "event": "undo",
+      "passed": true,
+      "visibleAfterMs": 10187,
+      "revision": 7
+    },
+    {
+      "event": "deletion",
+      "passed": true,
+      "visibleAfterMs": 9837,
+      "revision": 8
+    }
+  ],
+  "limits": [
+    "Visibility includes observer debounce, bridge, scan and 200ms poll quantization.",
+    "No forced cook; active read-only soak may share bridge.",
+    "Reopen and disconnect are separate tests."
+  ]
+}

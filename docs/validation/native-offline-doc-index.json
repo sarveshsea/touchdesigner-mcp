@@ -1,0 +1,9 @@
+{
+  "build": "2025.33230",
+  "kind": "installed-offline-document-index",
+  "indexedDocuments": 34,
+  "truncated": true,
+  "elapsedMs": 40,
+  "rawDocumentationPublished": false,
+  "limits": "Bounded local index, not complete documentation coverage"
+}

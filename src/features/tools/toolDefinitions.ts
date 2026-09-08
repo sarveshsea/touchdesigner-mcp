@@ -14,6 +14,7 @@ import {
 	UpdateNodeBody,
 } from "../../gen/mcp/touchDesignerAPI.zod.js";
 import type { TouchDesignerClient } from "../../tdClient/touchDesignerClient.js";
+import { ARCHITECTURE_TOOL_DEFINITIONS } from "./architectureTools.js";
 import type { ToolNames } from "./index.js";
 import {
 	formatClassDetails,
@@ -174,6 +175,7 @@ async function runAuthoringReport(
 }
 
 export const TOOL_DEFINITIONS: ToolDefinition[] = [
+	...ARCHITECTURE_TOOL_DEFINITIONS,
 	defineTool({
 		category: "system",
 		description: "Get server information from TouchDesigner",

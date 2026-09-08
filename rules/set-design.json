@@ -1,0 +1,176 @@
+{
+  "rules": [
+    {
+      "id": "builtin.type.input",
+      "match": {
+        "opTypes": [
+          "moviefileinTOP",
+          "videodeviceinTOP",
+          "ndiInTOP",
+          "fileinDAT",
+          "oscinDAT",
+          "midiinCHOP",
+          "noiseTOP"
+        ]
+      },
+      "role": "input"
+    },
+    {
+      "id": "builtin.type.audio",
+      "match": {
+        "opTypes": [
+          "audiodeviceinCHOP",
+          "audiofileinCHOP",
+          "audiodeviceoutCHOP",
+          "audiofilterCHOP",
+          "audiospectrumCHOP",
+          "audioanalysisCHOP",
+          "audiooscillatorCHOP"
+        ]
+      },
+      "role": "audio"
+    },
+    {
+      "id": "builtin.type.timing",
+      "match": {
+        "opTypes": [
+          "timerCHOP",
+          "beatCHOP",
+          "lfoCHOP",
+          "speedCHOP",
+          "timeCOMP"
+        ]
+      },
+      "role": "timing"
+    },
+    {
+      "id": "builtin.type.control",
+      "match": {
+        "opTypes": [
+          "constantCHOP",
+          "parameterCHOP",
+          "keyboardinCHOP",
+          "mouseinCHOP",
+          "logicCHOP",
+          "switchCHOP"
+        ]
+      },
+      "role": "control"
+    },
+    {
+      "id": "builtin.type.geometry",
+      "match": {
+        "opTypes": [
+          "geometryCOMP",
+          "geoCOMP",
+          "sphereSOP",
+          "gridSOP",
+          "boxSOP",
+          "transformSOP",
+          "mergeSOP",
+          "torusSOP"
+        ]
+      },
+      "role": "geometry"
+    },
+    {
+      "id": "builtin.type.simulation",
+      "match": {
+        "opTypes": [
+          "particleSOP",
+          "particlePOP",
+          "feedbackTOP",
+          "feedbackCHOP",
+          "feedbackPOP",
+          "springCHOP",
+          "bulletsolverCOMP",
+          "solverCOMP"
+        ]
+      },
+      "role": "simulation"
+    },
+    {
+      "id": "builtin.type.rendering",
+      "match": {
+        "opTypes": [
+          "renderTOP",
+          "renderpassTOP",
+          "cameraCOMP",
+          "lightCOMP",
+          "environmentlightCOMP"
+        ]
+      },
+      "role": "rendering"
+    },
+    {
+      "id": "builtin.type.post",
+      "match": {
+        "opTypes": [
+          "blurTOP",
+          "bloomTOP",
+          "levelTOP",
+          "compositeTOP",
+          "lookupTOP",
+          "displaceTOP",
+          "transformTOP",
+          "resolutionTOP"
+        ]
+      },
+      "role": "post"
+    },
+    {
+      "id": "builtin.type.typography",
+      "match": {
+        "opTypes": [
+          "textTOP",
+          "textSOP",
+          "textCOMP"
+        ]
+      },
+      "role": "typography"
+    },
+    {
+      "id": "builtin.type.output",
+      "match": {
+        "opTypes": [
+          "outTOP",
+          "outCHOP",
+          "outSOP",
+          "outDAT",
+          "outPOP",
+          "moviefileoutTOP",
+          "ndioutTOP",
+          "syphonspoutoutTOP",
+          "windowCOMP"
+        ]
+      },
+      "role": "output"
+    },
+    {
+      "id": "builtin.type.ui",
+      "match": {
+        "opTypes": [
+          "buttonCOMP",
+          "sliderCOMP",
+          "parameterCOMP",
+          "containerCOMP",
+          "panelCHOP",
+          "fieldCOMP",
+          "selectCOMP"
+        ]
+      },
+      "role": "ui"
+    },
+    {
+      "id": "builtin.type.documentation",
+      "match": {
+        "opTypes": [
+          "annotateCOMP",
+          "commentCOMP"
+        ]
+      },
+      "role": "documentation"
+    }
+  ],
+  "version": 1
+}

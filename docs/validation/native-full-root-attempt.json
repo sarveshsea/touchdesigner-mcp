@@ -1,0 +1,20 @@
+{
+  "build": "2025.33230",
+  "elapsedMs": 1289526,
+  "pages": 2943,
+  "nodes": 9097,
+  "edges": 51174,
+  "status": "disconnected",
+  "complete": false,
+  "dependencyComplete": false,
+  "coverage": {
+    "remaining": null,
+    "truncated": true,
+    "visited": 9097
+  },
+  "warnings": [
+    "Source is opaque to bounded Python static analysis",
+    "Static source analysis budget reached; hash and opaque dependency retained",
+    "Graph bridge call failed or returned an invalid report"
+  ]
+}

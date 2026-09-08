@@ -1,0 +1,20 @@
+{
+  "autostart": false,
+  "binary": {
+    "bytes": 30550,
+    "path": "inspector.tox",
+    "sha256": "5bbd78b6cf8a6047f8ad3736a8f7270d16b36796c1fb093f48df4f778fa8a30a"
+  },
+  "build": "2025.33230",
+  "cleanExport": true,
+  "schemaVersion": 1,
+  "sources": {
+    "__init__.py": "76a866f99d0be7ba79ee7baf5e7bae8006a0d78c1e3a3dbfa1f65e5697fa4b3c",
+    "builder.py": "082b23240826eb2dfed6fe259213c3cfd21ea21ce0d2717f47a379a886cf3f5e",
+    "client.py": "ce21ca4ae9b034b30777be6dc3d6c75e927b9b4c5f3305b42935ae48b06b8b3b",
+    "controller.py": "120b3ad630c1b7aa999fec3058102955b0fe069dac19f9b72777006791b87e34",
+    "model.py": "40895035c368be308cdb05efa7b3ef1300867818cd9efa9c3436051ee206733f",
+    "observer.py": "1f1c62af423a17bbe688abf3240af2137ad94434f35924b6069e56533c8bdca7",
+    "provenance.py": "8974e3d522e0372304b1c682bc1434172cae3f1f630814b23b911de700dd87ae"
+  }
+}

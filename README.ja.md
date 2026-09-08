@@ -1,4 +1,4 @@
-> Fork-specific installation and new authoring tools: [Set-design guide](docs/set-design.md). The original upstream guide is retained below.
+> Fork architecture preview: [migration and installation](docs/migration-architecture.md), [native inspector](docs/inspector.md), and [measured validation limits](docs/validation/architecture-status.md). Stock-project encapsulation is not supported in this preview; large-network scans and event latency do not meet the acceptance targets. The original Japanese upstream guide is retained below.
 
 # TouchDesigner MCP
 
@@ -51,6 +51,13 @@ TouchDesigner MCPは、AIモデルとTouchDesigner WebServer DAT 間のブリッ
 | `update_td_node_parameters` | 特定ノードのパラメータを更新します。           |
 | `get_td_network_snapshot` | Bounded read-only hierarchy, wires, layout and diagnostics. |
 | `layout_td_network` | Preview-first grid layout; coordinates only, one COMP at a time. |
+| `get_td_operator_catalog` | Discover build-specific registered operators, support evidence and bounded reference links. |
+| `map_td_project` | Refresh, watch, inspect or diff a bounded project graph with explicit freshness. |
+| `classify_td_network` | Explain operator roles and propose deterministic pinned layouts without moving nodes. |
+| `plan_td_refactor` | Preview grouping siblings with complete dependency checks and explicit blockers. |
+| `stage_td_refactor` | Apply a reviewed refactor plan or recover its durable transaction status. |
+| `get_td_memory` | Read bounded architecture notes with provenance and freshness. |
+| `record_td_memory` | Record, correct, retire or explicitly promote a project architecture note. |
 
 ### プロンプト (Prompts)
 

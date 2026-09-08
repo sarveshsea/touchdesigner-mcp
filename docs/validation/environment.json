@@ -1,0 +1,16 @@
+{
+  "touchDesignerBuild": "2025.33230",
+  "touchDesignerPython": "3.11.15",
+  "cpu": "Apple M3 Pro",
+  "memoryBytes": 38654705664,
+  "macOS": "26.2",
+  "localNode": "22.22.3",
+  "ciNode": "24.14.1",
+  "ciPython": "3.13",
+  "notes": [
+    "Live measurements used a separate owned validation project, preserving the artwork.",
+    "Native fixture cooking was disabled for census benchmarks.",
+    "No per-frame rendering or watch-off baseline certification is claimed.",
+    "UI screenshot capture later reported a locked Mac; no unlock was attempted."
+  ]
+}
