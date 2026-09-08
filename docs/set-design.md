@@ -1,5 +1,10 @@
 # Set-design authoring fork
 
+This page documents the preserved `2.1.0-setdesign.1` tool baseline. For the
+`2.2.0-architecture.1` preview, use the [architecture migration guide](migration-architecture.md)
+and [measured validation status](validation/architecture-status.md). Its new observer
+bundle is optional for snapshots and required for event-driven watch.
+
 This MIT-licensed fork builds on [8beeeaaat/touchdesigner-mcp](https://github.com/8beeeaaat/touchdesigner-mcp). It turns repeated authoring scripts from a large generative scene project into bounded, reusable MCP tools. TouchDesigner owns rendering and simulation; the MCP is an authoring and inspection bridge.
 
 ## What this release changes

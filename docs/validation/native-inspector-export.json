@@ -1,0 +1,13 @@
+{
+  "build": "2025.33230",
+  "cleanExport": true,
+  "inertReimport": true,
+  "sourceVerified": true,
+  "clientEmpty": true,
+  "operatorErrors": 0,
+  "binary": {
+    "bytes": 30502,
+    "path": "inspector.tox",
+    "sha256": "afe0a72c3b9afd5e714926c33b23bd569d439f95e7eec9a44f956c099bf11336"
+  }
+}

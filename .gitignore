@@ -155,3 +155,10 @@ td/modules/td_server
 .mcpregistry_github_token
 .mcpregistry_registry_token
 .serena
+
+# Local Python coverage state
+.coverage
+.pytest_cache/
+
+# Generated release bundle
+/touchdesigner-architecture-*.zip

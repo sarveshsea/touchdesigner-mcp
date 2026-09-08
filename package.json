@@ -1,7 +1,7 @@
 {
 	"name": "@sarveshsea/touchdesigner-mcp",
-	"version": "2.1.0-setdesign.1",
-	"description": "TouchDesigner MCP Set Design fork: bounded graph inspection and preview-first layout",
+	"version": "2.2.0-architecture.1",
+	"description": "TouchDesigner MCP: build-aware operator knowledge, live architecture maps, native inspection and private project memory",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sarveshsea/touchdesigner-mcp.git"
@@ -93,6 +93,7 @@
 		"test": "run-p test:*",
 		"test:e2e": "npm run build:dist && vitest run ./tests/e2e",
 		"test:integration": "vitest run ./tests/integration",
+		"test:python": "python3 -m coverage run --branch --source=td/architecture -m pytest tests/python && python3 -m coverage report --fail-under=80",
 		"test:unit": "vitest run ./tests/unit",
 		"coverage": "vitest run --coverage",
 		"version": "run-p version:*",

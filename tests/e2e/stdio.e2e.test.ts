@@ -44,7 +44,7 @@ describe("E2E: stdio", () => {
 		expect(client.getServerVersion()).toMatchObject({ name: "TouchDesigner" });
 
 		const { tools } = await client.listTools();
-		expect(tools).toHaveLength(16);
+		expect(tools).toHaveLength(23);
 
 		const result = await client.callTool({
 			arguments: { filter: "get_top_image" },

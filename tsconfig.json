@@ -18,6 +18,7 @@
 		"node_modules",
 		"src/gen/**/*.ts",
 		"**/*/*.test.ts",
-		"tests/e2e/helpers/**/*.ts"
+		"tests/e2e/helpers/**/*.ts",
+		"tests/benchmarks/**/*.ts"
 	]
 }

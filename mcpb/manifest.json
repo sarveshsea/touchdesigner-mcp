@@ -1,10 +1,10 @@
 {
   "manifest_version": "0.3",
   "name": "touchdesigner-mcp-setdesign",
-  "version": "2.1.0-setdesign.1",
-  "display_name": "TouchDesigner MCP — Set Design",
-  "description": "Set Design fork: bounded network snapshots, preview-first layout, and safe TOP capture",
-  "long_description": "# TouchDesigner MCP — Set Design\n\nAn MIT-licensed fork of 8beeeaaat/touchdesigner-mcp, maintained by Sarvesh Chidambaram. Adds bounded graph snapshots, preview-first coordinate layout, and safe TOP image capture. This launcher installs the exact fork release from its GitHub tarball; it does not use the upstream npm package.\n\nIncludes the original node operations, Python execution, documentation tools, and tool manifests. The local execution bridge has full access to the TouchDesigner process and should remain on loopback.",
+  "version": "2.2.0-architecture.1",
+  "display_name": "TouchDesigner MCP \u2014 Set Design",
+  "description": "Architecture preview: operator catalog, live maps, explainable roles, native inspector and private memory",
+  "long_description": "# TouchDesigner MCP \u2014 Architecture Preview\n\nAn MIT-licensed fork of 8beeeaaat/touchdesigner-mcp, maintained by Sarvesh Chidambaram. Adds build-aware operator knowledge, bounded live graph maps, explainable classification, a native inspector, and local project/personal memory. Working-copy encapsulation is guarded and experimental; full native restructuring acceptance is not certified in this preview. All 16 prior tools remain available alongside seven architecture tools.\n\nThis launcher installs the exact fork release from its GitHub tarball. Install the matching native architecture bundle separately. The execution bridge has full access to the TouchDesigner process and should remain on loopback.",
   "author": {
     "name": "8beeeaaat",
     "url": "https://github.com/8beeeaaat/touchdesigner-mcp"
@@ -20,7 +20,7 @@
       "command": "npx",
       "args": [
         "--yes",
-        "https://github.com/sarveshsea/touchdesigner-mcp/releases/download/v2.1.0-setdesign.1/sarveshsea-touchdesigner-mcp-2.1.0-setdesign.1.tgz",
+        "https://github.com/sarveshsea/touchdesigner-mcp/releases/download/v2.2.0-architecture.1/sarveshsea-touchdesigner-mcp-2.2.0-architecture.1.tgz",
         "--stdio",
         "--port=${user_config.TD_WEB_SERVER_PORT}"
       ]
@@ -90,6 +90,34 @@
     {
       "name": "layout_td_network",
       "description": "Preview-first direct-child coordinate layout; applies only when explicitly requested"
+    },
+    {
+      "name": "get_td_operator_catalog",
+      "description": "Discover build-specific registered operators, support evidence and bounded reference links."
+    },
+    {
+      "name": "map_td_project",
+      "description": "Refresh, watch, inspect or diff a bounded project graph with explicit freshness."
+    },
+    {
+      "name": "classify_td_network",
+      "description": "Explain operator roles and propose deterministic pinned layouts without moving nodes."
+    },
+    {
+      "name": "plan_td_refactor",
+      "description": "Preview grouping siblings with complete dependency checks and explicit blockers."
+    },
+    {
+      "name": "stage_td_refactor",
+      "description": "Apply a reviewed refactor plan or recover its durable transaction status."
+    },
+    {
+      "name": "get_td_memory",
+      "description": "Read bounded architecture notes with provenance and freshness."
+    },
+    {
+      "name": "record_td_memory",
+      "description": "Record, correct, retire or explicitly promote a project architecture note."
     }
   ],
   "prompts": [

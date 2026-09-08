@@ -1,0 +1,59 @@
+{
+  "fixtureCookingDisabled": true,
+  "fpsMeasured": false,
+  "generatedAt": "2026-09-08T15:57:00.749Z",
+  "kind": "live-owned-fixture-graph-census",
+  "limits": {
+    "batchSize": 100,
+    "dependencyClosure": "not_certified_for_enclosing_project",
+    "maxDurationMs": 300000,
+    "maxMetadataBytes": 134217728,
+    "pageSize": 100,
+    "scope": "owned_fixture_only"
+  },
+  "liveTouchDesignerMeasured": true,
+  "projectSaved": false,
+  "results": [
+    {
+      "bridgeRoundTripMs": 12733,
+      "build": "2025.33230",
+      "cleanupCalls": 11,
+      "cleanupComplete": true,
+      "collectionCalls": 42,
+      "collectionMs": 12902,
+      "complete": true,
+      "dependencyComplete": false,
+      "diagnosticAfter": {
+        "fixtureCookingDisabled": true,
+        "rootChildrenCpuCookMs": 0.41629400104284286,
+        "rootCpuCookMs": 0.02066599577665329,
+        "sampledCpuBytes": 67002,
+        "sampledCpuCookMsSum": 0.14449899643659592,
+        "sampledGpuBytes": 0,
+        "sampledOperators": 33,
+        "sampledTotalCooks": 3
+      },
+      "diagnosticBefore": {
+        "fixtureCookingDisabled": true,
+        "rootChildrenCpuCookMs": 0.41629400104284286,
+        "rootCpuCookMs": 0.02066599577665329,
+        "sampledCpuBytes": 67002,
+        "sampledCpuCookMsSum": 0.14449899643659592,
+        "sampledGpuBytes": 0,
+        "sampledOperators": 33,
+        "sampledTotalCooks": 3
+      },
+      "failureCode": null,
+      "fixtureCreated": true,
+      "graphStatus": "fresh",
+      "observedEdges": 3848,
+      "observedNodes": 1000,
+      "pythonScanMs": 850,
+      "pythonTimingSamples": 42,
+      "requestedNodes": 1000,
+      "status": "passed",
+      "totalMs": 30694
+    }
+  ],
+  "schemaVersion": 1
+}

@@ -1059,3 +1059,12 @@ switch (transportConfig.type) {
 **Document Version**: 2.0
 **Last Updated**: 2026-07-30
 **Status**: Complete
+
+## Architecture inspection service
+
+The additive architecture tools, local daemon, native inspector, private memory,
+and restricted checkpointed refactoring are described in
+[Architecture tools and local service](architecture-service.md). Existing bridge
+and transport architecture above remains the foundation; architecture watch state
+is owned by the separate daemon. See [migration guidance](migration-architecture.md)
+for explicit installation and current validation limits.
