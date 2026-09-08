@@ -1,3 +1,13 @@
+# Fork release: 2.1.0-setdesign.1
+
+- Add bounded, read-only network snapshots and preview-first coordinate layout.
+- Preserve existing nodes during temporary TOP capture.
+- Configure runtime API URLs explicitly, with bounded request timeouts.
+- Separate MCP/API version synchronization and GitHub-only fork packaging.
+- Update vulnerable build/transitive dependencies.
+
+Original upstream history follows.
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

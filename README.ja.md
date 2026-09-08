@@ -1,3 +1,5 @@
+> Fork-specific installation and new authoring tools: [Set-design guide](docs/set-design.md). The original upstream guide is retained below.
+
 # TouchDesigner MCP
 
 [![Version](https://img.shields.io/npm/v/touchdesigner-mcp-server?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/touchdesigner-mcp-server)
@@ -47,6 +49,8 @@ TouchDesigner MCPは、AIモデルとTouchDesigner WebServer DAT 間のブリッ
 | `get_td_nodes`              | 親パス内のノードを取得します（オプションでフィルタリング）。 |
 | `get_top_image`             | TOPノードの現在の出力を画像として取得します。  |
 | `update_td_node_parameters` | 特定ノードのパラメータを更新します。           |
+| `get_td_network_snapshot` | Bounded read-only hierarchy, wires, layout and diagnostics. |
+| `layout_td_network` | Preview-first grid layout; coordinates only, one COMP at a time. |
 
 ### プロンプト (Prompts)
 

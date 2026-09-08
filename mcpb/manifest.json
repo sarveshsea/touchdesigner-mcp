@@ -1,17 +1,17 @@
 {
   "manifest_version": "0.3",
-  "name": "touchdesigner-mcp",
-  "version": "2.0.0",
-  "display_name": "TouchDesigner MCP Server",
-  "description": "AI assistant for TouchDesigner - control nodes, execute Python scripts, and create interactive visual content",
-  "long_description": "# TouchDesigner MCP Server\n\nBridge between AI assistants and TouchDesigner for creative coding and visual programming. Features include:\n\n- **Node Operations**: Create, delete, and modify TouchDesigner nodes\n- **Python Execution**: Run Python scripts directly in TouchDesigner environment\n- **Parameter Control**: Update node parameters and connections\n- **Real-time Monitoring**: Get TouchDesigner server information and node details\n- **Creative Assistance**: AI-powered workflow optimization and debugging\n- **Code Execution Manifest**: Generate filesystem-style tool manifests (`describe_td_tools`) for code-mode agents\n\nPerfect for visual artists, creative coders, and interactive media developers who want to leverage AI for TouchDesigner projects.",
+  "name": "touchdesigner-mcp-setdesign",
+  "version": "2.1.0-setdesign.1",
+  "display_name": "TouchDesigner MCP — Set Design",
+  "description": "Set Design fork: bounded network snapshots, preview-first layout, and safe TOP capture",
+  "long_description": "# TouchDesigner MCP — Set Design\n\nAn MIT-licensed fork of 8beeeaaat/touchdesigner-mcp, maintained by Sarvesh Chidambaram. Adds bounded graph snapshots, preview-first coordinate layout, and safe TOP image capture. This launcher installs the exact fork release from its GitHub tarball; it does not use the upstream npm package.\n\nIncludes the original node operations, Python execution, documentation tools, and tool manifests. The local execution bridge has full access to the TouchDesigner process and should remain on loopback.",
   "author": {
     "name": "8beeeaaat",
     "url": "https://github.com/8beeeaaat/touchdesigner-mcp"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/8beeeaaat/touchdesigner-mcp"
+    "url": "https://github.com/sarveshsea/touchdesigner-mcp"
   },
   "server": {
     "type": "node",
@@ -19,8 +19,8 @@
     "mcp_config": {
       "command": "npx",
       "args": [
-        "-y",
-        "touchdesigner-mcp-server@latest",
+        "--yes",
+        "https://github.com/sarveshsea/touchdesigner-mcp/releases/download/v2.1.0-setdesign.1/sarveshsea-touchdesigner-mcp-2.1.0-setdesign.1.tgz",
         "--stdio",
         "--port=${user_config.TD_WEB_SERVER_PORT}"
       ]
@@ -82,6 +82,14 @@
     {
       "name": "update_td_node_parameters",
       "description": "Update parameter values for TouchDesigner nodes"
+    },
+    {
+      "name": "get_td_network_snapshot",
+      "description": "Bounded read-only network structure and diagnostics snapshot"
+    },
+    {
+      "name": "layout_td_network",
+      "description": "Preview-first direct-child coordinate layout; applies only when explicitly requested"
     }
   ],
   "prompts": [
@@ -130,5 +138,5 @@
     "interactive-media"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/8beeeaaat/touchdesigner-mcp"
+  "homepage": "https://github.com/sarveshsea/touchdesigner-mcp"
 }

@@ -34,6 +34,7 @@ export function registerTdTools(
 		server.registerTool(
 			definition.name,
 			{
+				annotations: definition.annotations,
 				description: definition.description,
 				inputSchema: definition.schema.strict(),
 			},

@@ -59,7 +59,7 @@ describe("E2E: Streamable HTTP", () => {
 		await client.connect(newTransport());
 
 		const { tools } = await client.listTools();
-		expect(tools).toHaveLength(14);
+		expect(tools).toHaveLength(16);
 		const toolNames = tools.map((tool) => tool.name);
 		expect(toolNames).toContain("describe_td_tools");
 		expect(toolNames).toContain("get_top_image");
@@ -93,7 +93,7 @@ describe("E2E: Streamable HTTP", () => {
 		expect(client.getServerVersion()).toMatchObject({ name: "TouchDesigner" });
 
 		const { tools } = await client.listTools();
-		expect(tools).toHaveLength(14);
+		expect(tools).toHaveLength(16);
 	}, 30_000);
 
 	it("answers /health without a sessions field (stateless serving)", async () => {

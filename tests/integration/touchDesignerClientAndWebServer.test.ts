@@ -1,10 +1,12 @@
+import { randomUUID } from "node:crypto";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { buildGetTopImageScript } from "../../src/features/tools/pythonScripts/getTopImageScript";
 import type { TdNode } from "../../src/gen/endpoints/TouchDesignerAPI";
 import { TouchDesignerClient } from "../../src/tdClient/touchDesignerClient";
 
 const PROJECT_PATH = "/project1";
-const SANDBOX_NAME = "test_base_comp";
+const SANDBOX_NAME = `test_base_comp_${randomUUID().replaceAll("-", "")}`;
+let sandboxId: number | null = null;
 const SANDBOX_PATH = `${PROJECT_PATH}/${SANDBOX_NAME}`;
 /**
  * Verify if a node exists
@@ -58,19 +60,26 @@ function readJpegSize(jpeg: Buffer): { width: number; height: number } {
 
 const tdClient = new TouchDesignerClient();
 
-describe("TouchDesigner Client E2E Tests", () => {
+const describeLive =
+	process.env.TD_LIVE_TESTS === "1" ? describe : describe.skip;
+describeLive("TouchDesigner Client E2E Tests", () => {
 	beforeAll(async () => {
 		process.env.TD_WEB_SERVER_HOST = "http://127.0.0.1";
 		process.env.TD_WEB_SERVER_PORT = "9981";
-		await tdClient.createNode({
+		const created = await tdClient.createNode({
 			nodeName: SANDBOX_NAME,
 			nodeType: "baseCOMP",
 			parentPath: PROJECT_PATH,
 		});
+		if (!created.success) throw created.error;
+		sandboxId = created.data.node.id;
 	});
 
 	afterAll(async () => {
-		await tdClient.deleteNode({ nodePath: SANDBOX_PATH });
+		if (sandboxId !== null)
+			await tdClient.execPythonScript({
+				script: `node=op(${JSON.stringify(SANDBOX_PATH)})\nif node is not None and node.id == ${sandboxId}: node.destroy()\nresult="cleanup complete"`,
+			});
 	});
 
 	test("TouchDesigner info endpoint should return server information", async () => {

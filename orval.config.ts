@@ -7,7 +7,7 @@ export default defineConfig({
 		},
 		output: {
 			baseUrl: {
-				getBaseUrlFromSpecification: true,
+				getBaseUrlFromSpecification: false,
 			},
 			biome: false,
 			clean: true,

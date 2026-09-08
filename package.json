@@ -1,10 +1,10 @@
 {
-	"name": "touchdesigner-mcp-server",
-	"version": "2.0.0",
-	"description": "MCP server for TouchDesigner",
+	"name": "@sarveshsea/touchdesigner-mcp",
+	"version": "2.1.0-setdesign.1",
+	"description": "TouchDesigner MCP Set Design fork: bounded graph inspection and preview-first layout",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/8beeeaaat/touchdesigner-mcp.git"
+		"url": "git+https://github.com/sarveshsea/touchdesigner-mcp.git"
 	},
 	"keywords": [
 		"MCP Server",
@@ -12,15 +12,15 @@
 	],
 	"author": "8beeeaaat",
 	"license": "MIT",
-	"mcpName": "io.github.8beeeaaat/touchdesigner-mcp-server",
+	"mcpName": "io.github.sarveshsea/touchdesigner-mcp",
 	"mcpCompatibility": {
 		"minApiVersion": "1.3.0",
 		"expectedApiVersion": "1.5.0"
 	},
 	"bugs": {
-		"url": "https://github.com/8beeeaaat/touchdesigner-mcp/issues"
+		"url": "https://github.com/sarveshsea/touchdesigner-mcp/issues"
 	},
-	"homepage": "https://github.com/8beeeaaat/touchdesigner-mcp#readme",
+	"homepage": "https://github.com/sarveshsea/touchdesigner-mcp#readme",
 	"engines": {
 		"node": ">=20.0.0"
 	},
@@ -42,6 +42,7 @@
 		"zod": "4.4.3"
 	},
 	"devDependencies": {
+		"@anthropic-ai/mcpb": "2.1.2",
 		"@biomejs/biome": "2.5.1",
 		"@modelcontextprotocol/client": "^2.0.0",
 		"@redocly/cli": "2.35.1",
@@ -51,7 +52,7 @@
 		"@types/semver": "7.7.1",
 		"@vitest/coverage-v8": "4.1.9",
 		"npm-run-all": "4.1.5",
-		"orval": "8.19.0",
+		"orval": "8.30.0",
 		"prettier": "3.8.5",
 		"shx": "0.4.0",
 		"typescript": "6.0.3",
@@ -59,7 +60,8 @@
 	},
 	"overrides": {
 		"@hono/node-server": "2.0.11",
-		"js-yaml": "4.3.1"
+		"js-yaml": "4.3.1",
+		"tmp": "0.2.7"
 	},
 	"type": "module",
 	"exports": {
@@ -76,7 +78,7 @@
 		"build": "run-s build:*",
 		"build:gen": "npm run gen",
 		"build:dist": "tsc && shx chmod +x dist/*.js && shx cp -r src/features/tools/presenter/templates dist/features/tools/presenter/",
-		"build:mcpb": "npx @anthropic-ai/mcpb pack mcpb/ touchdesigner-mcp.mcpb",
+		"build:mcpb": "mcpb pack mcpb/ touchdesigner-mcp.mcpb",
 		"lint": "run-p lint:*",
 		"lint:biome": "biome check",
 		"lint:tsc": "tsc --noEmit",
@@ -103,5 +105,11 @@
 	},
 	"files": [
 		"dist/**/*"
+	],
+	"contributors": [
+		{
+			"name": "Sarvesh Chidambaram",
+			"url": "https://github.com/sarveshsea"
+		}
 	]
 }

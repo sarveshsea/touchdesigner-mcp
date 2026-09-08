@@ -1,7 +1,11 @@
-# TouchDesigner MCP
+# TouchDesigner MCP — set-design fork
 
-[![Version](https://img.shields.io/npm/v/touchdesigner-mcp-server?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/touchdesigner-mcp-server)
-[![Downloads](https://img.shields.io/npm/dt/touchdesigner-mcp-server.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/touchdesigner-mcp-server)
+An open-source authoring fork maintained by [sarveshsea](https://github.com/sarveshsea), built on [8beeeaaat’s MIT-licensed project](https://github.com/8beeeaaat/touchdesigner-mcp). Original attribution and license are retained.
+
+**New:** bounded network snapshots, preview-first coordinate layouts, and non-destructive temporary image capture. See the [fork installation and developer guide](docs/set-design.md) and [GitHub releases](https://github.com/sarveshsea/touchdesigner-mcp/releases). This fork is distributed through GitHub; upstream npm commands below install upstream.
+
+[![Fork CI](https://github.com/sarveshsea/touchdesigner-mcp/actions/workflows/development.yml/badge.svg)](https://github.com/sarveshsea/touchdesigner-mcp/actions/workflows/development.yml)
+[![GitHub prerelease](https://img.shields.io/github/v/release/sarveshsea/touchdesigner-mcp?include_prereleases)](https://github.com/sarveshsea/touchdesigner-mcp/releases)
 
 This is an implementation of an MCP (Model Context Protocol) server for TouchDesigner. Its goal is to enable AI agents to control and operate TouchDesigner projects.
 
@@ -19,9 +23,9 @@ TouchDesigner MCP acts as a bridge between AI models and the TouchDesigner WebSe
 
 ## Installation
 
-Please refer to the **[Installation Guide](docs/installation.md)**.
+Start with the **[fork installation guide](docs/set-design.md#install-this-fork)**. The [upstream component guide](docs/installation.md) covers the unchanged TouchDesigner bridge.
 
-If you are updating, please refer to the procedure in the **[Latest Release](https://github.com/8beeeaaat/touchdesigner-mcp/releases/latest#for-updates-from-previous-versions)**.
+Download this fork from **[GitHub Releases](https://github.com/sarveshsea/touchdesigner-mcp/releases)**. Upstream component updates remain available from [8beeeaaat](https://github.com/8beeeaaat/touchdesigner-mcp/releases).
 
 ## MCP Server Features
 
@@ -47,6 +51,8 @@ Tools allow AI agents to perform actions in TouchDesigner.
 | `get_td_nodes`          | Gets nodes under a parent path, with optional filtering.           |
 | `get_top_image`         | Captures the current output of a TOP node as an image.             |
 | `update_td_node_parameters` | Updates the parameters of a specific node.                     |
+| `get_td_network_snapshot` | Bounded read-only hierarchy, wires, layout and diagnostics. |
+| `layout_td_network` | Preview-first grid layout; coordinates only, one COMP at a time. |
 
 ### Prompts
 
@@ -87,7 +93,7 @@ The MCP server and the TouchDesigner component are versioned on **two independen
   3. Remove the old `mcp_webserver_base` component from your TouchDesigner project and import the `.tox` from the new folder.
   4. Restart TouchDesigner and the AI agent running the MCP server (e.g., Claude Desktop).
 
-- **For developers:** When developing locally, run `npm run version` after editing `package.json` (or simply use `npm version ...`). This keeps the Python API (`pyproject.toml` + `td/modules/utils/version.py`), `mcpCompatibility.expectedApiVersion`, MCP bundle manifest, and registry metadata in sync so that the runtime compatibility check succeeds.
+- **For developers:** When developing locally, run `npm run version` after editing `package.json` (or simply use `npm version ...`). This synchronizes MCP package metadata separately from the Python API, whose version is controlled by `mcpCompatibility.expectedApiVersion`. After packaging, run `node scripts/syncReleaseHashes.ts` to hash the final MCPB.
 
 For a deeper look at how the MCP server enforces these rules, see [Version Compatibility Verification](docs/architecture.md#version-compatibility-verification).
 

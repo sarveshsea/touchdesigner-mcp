@@ -31,6 +31,14 @@ import {
 } from "./presenter/index.js";
 import { buildGetTopImageScript } from "./pythonScripts/getTopImageScript.js";
 import {
+	buildLayoutNetworkScript,
+	layoutNetworkScriptParamsSchema,
+} from "./pythonScripts/layoutNetworkScript.js";
+import {
+	buildNetworkSnapshotScript,
+	networkSnapshotParamsSchema,
+} from "./pythonScripts/networkSnapshotScript.js";
+import {
 	detailOnlyFormattingSchema,
 	formattingOptionsSchema,
 } from "./types.js";
@@ -70,6 +78,12 @@ export type ToolRunResult = string | { content: ToolContent[] };
  * directly from `schema`, which itself originates from the OpenAPI spec.
  */
 export interface ToolDefinition {
+	annotations?: {
+		readOnlyHint?: boolean;
+		destructiveHint?: boolean;
+		idempotentHint?: boolean;
+		openWorldHint?: boolean;
+	};
 	/** Registered MCP tool name (also the source for functionName/modulePath). */
 	name: ToolNames;
 	/** Agent-facing description, used for both registration and the manifest. */
@@ -105,6 +119,7 @@ type TypedRunContext<S extends z.ZodObject<z.ZodRawShape>> = {
  * the uniform {@link ToolDefinition} shape for storage in the table.
  */
 function defineTool<S extends z.ZodObject<z.ZodRawShape>>(def: {
+	annotations?: ToolDefinition["annotations"];
 	name: ToolNames;
 	description: string;
 	category: ToolCategory;
@@ -142,6 +157,21 @@ const GetTopImageParams = z.object({
 		.min(1)
 		.describe("Path to the TOP node to capture, e.g. '/project1/moviefilein1'"),
 });
+
+async function runAuthoringReport(
+	tdClient: TouchDesignerClient,
+	script: string,
+): Promise<string> {
+	const response = await tdClient.execPythonScript({ script });
+	if (!response.success) throw response.error;
+	const raw = response.data.result;
+	if (typeof raw !== "string" || raw.length > 4 * 1024 * 1024)
+		throw new Error("Invalid or oversized authoring report");
+	const parsed: unknown = JSON.parse(raw);
+	if (!parsed || typeof parsed !== "object" || Array.isArray(parsed))
+		throw new Error("Expected an authoring report object");
+	return JSON.stringify(parsed, null, 2);
+}
 
 export const TOOL_DEFINITIONS: ToolDefinition[] = [
 	defineTool({
@@ -498,5 +528,47 @@ const image = await getTopImage({ nodePath: '/project1/moviefilein1', maxSize: 5
 			};
 		},
 		schema: GetTopImageParams,
+	}),
+	defineTool({
+		annotations: {
+			destructiveHint: false,
+			idempotentHint: true,
+			openWorldHint: false,
+			readOnlyHint: true,
+		},
+		category: "nodes",
+		description:
+			"Inspect a bounded COMP hierarchy, layout coordinates, wire connections and direct diagnostics without cooking nodes or reading DAT/parameter contents.",
+		example:
+			"get_td_network_snapshot({parentPath:'/project1',maxDepth:2,maxNodes:100})",
+		name: TOOL_NAMES.GET_TD_NETWORK_SNAPSHOT,
+		notes:
+			"Read-only snapshot, not a project backup or measured performance benchmark. Node IDs are session-local. Uses the existing Python execution bridge.",
+		returns:
+			"JSON structure report with explicit node, depth, wire and string truncation limits.",
+		run: ({ params, tdClient }) =>
+			runAuthoringReport(tdClient, buildNetworkSnapshotScript(params)),
+		schema: networkSnapshotParamsSchema,
+	}),
+	defineTool({
+		annotations: {
+			destructiveHint: false,
+			idempotentHint: true,
+			openWorldHint: false,
+			readOnlyHint: false,
+		},
+		category: "nodes",
+		description:
+			"Preview or apply a stable grid layout to at most 200 direct children of one COMP. Defaults to dryRun=true. Changes only nodeX/nodeY; never renames, collapses, reparents or cooks operators.",
+		example:
+			"layout_td_network({parentPath:'/project1',columns:4,dryRun:true})",
+		name: TOOL_NAMES.LAYOUT_TD_NETWORK,
+		notes:
+			"Inspect the preview, then repeat with dryRun=false to apply. Preview is recomputed on apply; it is not a reserved transaction. Never blindly retry a timed-out mutation: inspect current state first.",
+		returns:
+			"JSON before/after coordinate plan or applied receipt. Apply failure attempts restoration and reports any restoration failures.",
+		run: ({ params, tdClient }) =>
+			runAuthoringReport(tdClient, buildLayoutNetworkScript(params)),
+		schema: layoutNetworkScriptParamsSchema,
 	}),
 ];
