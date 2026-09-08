@@ -30,8 +30,8 @@ The prior `v2.1.0-setdesign.1` release remains available for rollback.
   The native incremented-save adapter passed its isolated preservation canary.
 - No verified stock-engine/tooling manifest is shipped to exempt opaque code.
   The default service blocks such plans. Caller-supplied exemptions are rejected.
-- Real 1k/10k operator frame-impact measurements, reopen matrix and full
-  failure-injection acceptance are not yet certified.
+- Per-frame impact measurements and full failure-injection acceptance are not
+  certified. The owned 1k/10k graph census results below do not measure rendering.
 
 A 300-second live whole-root attempt inspected 1,475 nodes and 8,803 edges before
 its deadline. Instrumentation attributed 13.83 seconds to Python page work and
@@ -57,6 +57,43 @@ of two seconds was **not met**. These are eventual-correctness results.
 The [native copy-save canary](native-save-canary.json) confirmed an incremented
 active sibling copy, unchanged original bytes/identity, and preservation of the
 asset directory. It does not validate a complete refactor transaction.
+
+## Live scale and export results
+
+| Owned fixture | Collection time | Python page work | Bridge calls | Result |
+|---|---:|---:|---:|---|
+| [1,000 operators](architecture-live-1k.json) | 12.902 s | 0.850 s | 42 | Complete, fresh, cleanup passed |
+| [10,000 operators](architecture-live-10k.json) | 901.582 s | 14.554 s | 681 | Complete, fresh, cleanup passed |
+
+The 10k collection is too slow for a responsive whole-network refresh. Transport
+waiting dominates these measurements; fixture setup/cleanup and background TD
+work also contribute to total runtime. Both fixtures had cooking disabled. The
+reported cook diagnostics are sparse CPU samples, not per-frame/GPU performance
+or an overhead comparison against a watch-off baseline. Dependency closure of
+the enclosing project is not claimed.
+
+The [native inspector receipt](native-inspector-export.json) verifies a real
+clean export and inert reimport, embedded sources, empty client and zero operator
+errors. Native docking and click-to-focus also passed after correcting the build's pane enum access. Release packaging checks exact source and binary hashes before and after
+copying the bundle. [Installed offline help indexing](native-offline-doc-index.json)
+returned 34 documents within the bounded budget and correctly reported truncation.
+No documentation mirror is distributed.
+
+## Restart and persistent identity
+
+A [real project reopen](native-project-reopen.json) preserved saved bytes, started
+the inspector/observer and changed the session and project-root runtime ID. The
+watch service recovered to a fresh 33-node map. One immediate probe during a
+subsequent reopen timed out after 30 seconds; a later read recovered. No failed
+mutation was blindly repeated.
+
+The [fingerprint probe](native-memory-reopen.json) remained stable across a
+same-file session restart; this sampled child retained its numeric ID. Separate
+regressions deliberately reassign IDs and verify observed facts, decisions and
+verified notes stay current while mutation plans reject replaced IDs/sessions.
+Fingerprint version 2 excludes only runtime ID. Old provenance is left stale
+until explicit reverification. Different save paths remain separate project
+namespaces; no heuristic merges numbered saves or unrelated projects.
 
 ## Automated evidence
 

@@ -151,6 +151,8 @@ The state location is chosen by the host, not supplied by note callers. Private 
 
 Provenance includes build, source identity and node/graph fingerprint. Missing provenance is unverified; changed fingerprints, build, missing nodes or incomplete observations make evidence stale. Retiring or correcting a note preserves bounded history. Do not place tokens, raw source, private artwork assets or personal machine paths in release documentation, sample notes or version control.
 
+Fingerprint version 2 excludes runtime operator IDs, which can change when a saved project reopens. Paths, types, positions, flags and captured source hashes remain fingerprint evidence. Refactor plans still bind the session and operator IDs separately. Older ID-bearing fingerprints become stale when compared with a new scan; they are never silently relabeled as current. Re-observe and explicitly correct their provenance when the claim is verified again.
+
 ## Observe a two-hour watch
 
 Start and verify watch through the tool first, then run:

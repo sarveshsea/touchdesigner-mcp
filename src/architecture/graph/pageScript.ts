@@ -283,7 +283,9 @@ def _gnode(node):
     if entry['family'].upper()=='DAT' and lower_type in ('filein','fileindat','webclient','webclientdat'):
         entry['ownership'].append('external-source')
         _ge('ownership',node.path,node.path,'unresolved',reason='External DAT source was not executed or read')
-    entry['fingerprint'] = _gh(json.dumps(entry,sort_keys=True))
+    # v2 excludes only session-local OP identity; mutation guards check IDs separately.
+    stable_entry = {key:value for key,value in entry.items() if key != 'id'}
+    entry['fingerprint'] = _gh(json.dumps({'fingerprintVersion':2,'node':stable_entry},sort_keys=True))
     return entry
 
 for _gi, _gitem in enumerate(_gq['items']):

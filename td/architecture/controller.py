@@ -73,9 +73,7 @@ class Controller:
 		self.model.selected_path = path
 		self.model.message = self.model.describe(path)
 		panes = [
-			pane
-			for pane in self.ui.panes
-			if pane.type == self.td.PaneType.NETWORKEDITOR
+			pane for pane in self.ui.panes if pane.type == type(pane.type).NETWORKEDITOR
 		]
 		if not panes:
 			self.model.message = text(
@@ -88,7 +86,7 @@ class Controller:
 
 	def selected_paths(self):
 		for pane in self.ui.panes:
-			if pane.type == self.td.PaneType.NETWORKEDITOR:
+			if pane.type == type(pane.type).NETWORKEDITOR:
 				selected = [node.path for node in pane.owner.selectedChildren]
 				if selected:
 					return selected[
@@ -159,8 +157,11 @@ class Controller:
 					{"action": "apply", "planId": self.model.plan_id},
 				)
 			elif action == "dock":
-				pane = self.ui.panes.current.splitRight()
-				pane = pane.changeType(self.td.PaneType.PANEL)
+				current = self.ui.panes.current
+				panel_type = type(current.type).PANEL
+				pane = current.splitRight()
+				# changeType invalidates the old pane and returns its replacement.
+				pane = pane.changeType(panel_type)
 				pane.owner = self.panel
 			else:
 				raise ValueError("Unknown inspector action")

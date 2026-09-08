@@ -1,3 +1,4 @@
+from enum import Enum
 from pathlib import Path
 import sys
 from types import SimpleNamespace
@@ -157,7 +158,10 @@ def controller_fixture(monkeypatch):
 	td = fake()
 	builder.install(td_module=td, activate=False, open_window=False)
 	panel = ROOT.op(builder.OWNER_NAME)
-	td.PaneType = SimpleNamespace(NETWORKEDITOR="network", PANEL="panel")
+
+	class NativePaneType(Enum):
+		NETWORKEDITOR = "network"
+		PANEL = "panel"
 
 	class Client:
 		def __init__(self, *args, **kwargs):
@@ -180,7 +184,9 @@ def controller_fixture(monkeypatch):
 			self.response_args = args
 
 	monkeypatch.setattr(controller, "LocalClient", Client)
-	pane = SimpleNamespace(type="network", owner=PROJECT, home=lambda **kwargs: None)
+	pane = SimpleNamespace(
+		type=NativePaneType.NETWORKEDITOR, owner=PROJECT, home=lambda **kwargs: None
+	)
 	pane.splitRight = lambda: pane
 	pane.changeType = lambda kind: pane
 
@@ -519,3 +525,23 @@ def test_clean_export_canonicalizes_external_tox_enable_before_inventory():
 	# loadTox forces this native flag off; it must already match the pristine hash.
 	panel.par.enableexternaltox.val = False
 	assert builder.validate_clean_export(panel)["cleanExport"] is True
+
+
+def test_dock_uses_native_enum_and_new_pane_return_value(monkeypatch):
+	module, current, panel, pane, _ = controller_fixture(monkeypatch)
+	assert not hasattr(current.td, "PaneType")
+	enum = type(pane.type)
+	converted = SimpleNamespace(type=enum.PANEL, owner=None)
+
+	def convert(kind):
+		assert kind is enum.PANEL
+		return converted
+
+	split = SimpleNamespace(type=enum.NETWORKEDITOR, changeType=convert, owner=None)
+	pane.splitRight = lambda: split
+	current.action("dock")
+	assert converted.owner is panel
+	assert split.owner is None and pane.owner is PROJECT
+	current.focus("/project1")
+	assert pane.owner is ROOT
+	module.stop(panel.path)

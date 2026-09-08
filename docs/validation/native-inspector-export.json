@@ -5,9 +5,11 @@
   "sourceVerified": true,
   "clientEmpty": true,
   "operatorErrors": 0,
+  "docked": true,
+  "clickToFocus": true,
   "binary": {
-    "bytes": 30502,
+    "bytes": 30550,
     "path": "inspector.tox",
-    "sha256": "afe0a72c3b9afd5e714926c33b23bd569d439f95e7eec9a44f956c099bf11336"
+    "sha256": "5bbd78b6cf8a6047f8ad3736a8f7270d16b36796c1fb093f48df4f778fa8a30a"
   }
 }
