@@ -22,8 +22,8 @@ The prior `v2.1.0-setdesign.1` release remains available for rollback.
 
 ## Remaining release gates
 
-- The two-hour mixed watch observation is in progress; no endurance pass is
-  claimed until its final receipt is reviewed.
+- The two-hour mixed observation completed, but included interruptions and
+  failures. It does not pass the uninterrupted watch endurance gate; see below.
 - Complete whole-project dependency census and end-to-end working-copy staging
   are not certified. Stock TD internals contain substantial opaque source;
   project-scoped scans do not prove that external inbound references are absent.
@@ -95,7 +95,42 @@ Fingerprint version 2 excludes only runtime ID. Old provenance is left stale
 until explicit reverification. Different save paths remain separate project
 namespaces; no heuristic merges numbered saves or unrelated projects.
 
+## Two-hour mixed watch observation
+
+The [read-only observation receipt](native-watch-observation.json) covers
+7,200.002 seconds, 3,389 probes and 227 service-status samples. It ran alongside
+native scale fixtures, inspector reinstallation and deliberate service/project
+restart tests. It recorded five bridge probe failures, 683 inactive or wrong-root
+observer samples, eight watch-inactive status samples and eleven observer session
+changes. There were 211 skipped sampling deadlines. **This is not an uninterrupted
+two-hour watch acceptance pass.**
+
+| Metric | Observed result |
+|---|---:|
+| Successful bridge probe RPC p95 / p99 | 1,521.5 / 3,594.7 ms |
+| Longest successful probe | 24,747.7 ms |
+| Maximum observer dirty queue / final queue | 72 / 0 |
+| Maximum concurrent pending scans / final backlog | 2 / 0 |
+| Daemon RSS first / last / maximum | 99.9 / 91.8 / 160.1 MB |
+| TD RSS first / last / maximum | 1,024.4 / 1,305.2 / 2,310.1 MB |
+
+MB means decimal megabytes. TD's endpoint RSS increased by 280.9 MB during this
+mixed workload. Service restarts and fixture allocations confound endpoint memory
+changes; no same-process leak or resource-count certification follows from them.
+Probe percentiles measure bridge request latency, not rendering frame time. Cook
+counters in the JSON are sparse last-cook samples, not per-frame distributions.
+
+The final ten minutes contained 300 probes without bridge failures or inactive
+observer samples, and 20 fresh service snapshots with no pending scans. The
+watched graph was **33 nodes / 82 edges**, with complete shallow collection and
+incomplete dependency analysis. This small-network recovery result does not
+establish 10k watch performance, uninterrupted endurance or full dependency closure.
+
 ## Automated evidence
+
+The final run passed **704 JavaScript/TypeScript tests and 46 Python tests**.
+V8 coverage measured 87.73% statements, 83.96% branches, 86.89% functions and
+88.79% lines; Python branch-inclusive coverage measured 89%.
 
 The existing JavaScript/TypeScript coverage gates remain at 80% for statements,
 branches, functions and lines. Native Python tests now run under CI with branch

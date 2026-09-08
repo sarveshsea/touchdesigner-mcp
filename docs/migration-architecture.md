@@ -2,6 +2,18 @@
 
 The architecture extension is additive to the existing TouchDesigner MCP bridge. Existing artwork networks and shader sources do not need to be restructured to use its catalog, graph, classification or memory tools. Refactoring is a separate explicit action with stricter eligibility checks.
 
+## Release assets
+
+Use the matching **v2.2.0-architecture.1** assets from the fork's GitHub prerelease:
+
+- `sarveshsea-touchdesigner-mcp-2.2.0-architecture.1.tgz`: compiled MCP server, including the shared architecture daemon. The MCPB launcher pins this same tarball; it is an alternative client installer, not the native TD component.
+- `touchdesigner-architecture-2.2.0-architecture.1.zip`: matching API 1.5 bridge and supporting modules, inert `td/architecture/inspector.tox`, embedded/external inspector sources, an original seven-family `.tox` example, rules and validation documentation. Extract the whole bundle; keep the bridge modules beside their supplied loader.
+- `SHA256SUMS`: verify downloaded files before installation. `inspector.build.json` additionally binds the native inspector to its seven source modules and tested TD build.
+
+In a separately saved TD project, install the bridge from the extracted bundle if one is not already connected. Start the new MCP server and invoke a catalog or map read to launch the architecture service. Import `td/architecture/inspector.tox`, open its viewer, click **CONNECT**, choose the intended root, then **WATCH** and **DOCK**. Imports are deliberately inactive until CONNECT. An existing inspector is not replaced automatically.
+
+The prerelease is built from the feature branch while the review remains open. When building from source, check out `v2.2.0-architecture.1` explicitly; the default branch can still contain the rollback version. Restart the MCP host after changing its pinned package. Do not interrupt an active refactor transaction to upgrade the daemon.
+
 ## Preserve and install
 
 1. Preserve the current `.toe`, installed bridge component and its matching supporting modules. Work in a separately saved copy for the first native installation and refactor trial.

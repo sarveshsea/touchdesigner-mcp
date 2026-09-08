@@ -1,4 +1,4 @@
-> Fork-specific installation and new authoring tools: [Set-design guide](docs/set-design.md). The original upstream guide is retained below.
+> Fork architecture preview: [migration and installation](docs/migration-architecture.md), [native inspector](docs/inspector.md), and [measured validation limits](docs/validation/architecture-status.md). Stock-project encapsulation is not supported in this preview; large-network scans and event latency do not meet the acceptance targets. The original Japanese upstream guide is retained below.
 
 # TouchDesigner MCP
 
