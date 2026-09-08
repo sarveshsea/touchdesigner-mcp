@@ -6,7 +6,7 @@ info:
 openapi: 3.0.0
 
 servers:
-  - url: ${process.env.TD_WEB_SERVER_HOST}:${process.env.TD_WEB_SERVER_PORT}
+  - url: http://127.0.0.1:9981
     description: TouchDesigner Web Server
 
 paths:

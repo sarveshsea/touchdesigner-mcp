@@ -65,10 +65,12 @@ try:
                 new_w = max(1, round(width * max_size / height))
 
             parent = node.parent()
-            tmp_name = '__mcp_tmp_res__' + node.name
-            existing = parent.op(tmp_name)
-            if existing is not None:
-                existing.destroy()
+            tmp_base = '__mcp_tmp_res__' + node.name
+            tmp_name = tmp_base
+            suffix = 1
+            while parent.op(tmp_name) is not None:
+                tmp_name = tmp_base + '_' + str(suffix)
+                suffix += 1
             tmp_top = parent.create(td.resolutionTOP, tmp_name)
             tmp_top.inputConnectors[0].connect(node)
             tmp_top.par.outputresolution = 'custom'

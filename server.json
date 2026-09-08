@@ -1,30 +1,21 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-  "name": "io.github.8beeeaaat/touchdesigner-mcp-server",
+  "name": "io.github.sarveshsea/touchdesigner-mcp",
   "description": "MCP server for TouchDesigner - Control and operate TouchDesigner projects through AI agents",
-  "version": "2.0.0",
+  "version": "2.1.0-setdesign.1",
   "repository": {
-    "url": "https://github.com/8beeeaaat/touchdesigner-mcp.git",
-    "source": "github"
+    "source": "github",
+    "url": "https://github.com/sarveshsea/touchdesigner-mcp.git"
   },
   "packages": [
     {
-      "registryType": "npm",
-      "identifier": "touchdesigner-mcp-server",
-      "version": "2.0.0",
-      "runtimeHint": "npx",
-      "transport": {
-        "type": "stdio"
-      }
-    },
-    {
+      "identifier": "https://github.com/sarveshsea/touchdesigner-mcp/releases/download/v2.1.0-setdesign.1/touchdesigner-mcp.mcpb",
       "registryType": "mcpb",
-      "identifier": "https://github.com/8beeeaaat/touchdesigner-mcp/releases/download/v2.0.0/touchdesigner-mcp.mcpb",
-      "version": "2.0.0",
-      "fileSha256": "0cd822cf15ba252f3fd7e93cfc17555e769d9deb875d64cc4464422752a9faed",
+      "version": "2.1.0-setdesign.1",
       "transport": {
         "type": "stdio"
-      }
+      },
+      "fileSha256": "8e403f0de47cde0daceb4f0f4acbfe373750f9d9311f527aa4dc7abde875883a"
     }
   ]
 }

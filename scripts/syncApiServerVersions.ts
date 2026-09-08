@@ -8,10 +8,12 @@ const rootDir = join(__dirname, "..");
 
 const packageJsonPath = join(rootDir, "package.json");
 const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
-const packageVersion = packageJson.version;
+const packageVersion = packageJson.mcpCompatibility?.expectedApiVersion;
 
 if (!packageVersion) {
-	throw new Error("package.json does not contain a version field.");
+	throw new Error(
+		"package.json must declare mcpCompatibility.expectedApiVersion.",
+	);
 }
 
 const updatedFiles: string[] = [];
@@ -45,18 +47,7 @@ writeTextFile("src/api/index.yml", (contents) => {
 	return contents.replace(/version:\s*[\d.]+/, `version: ${packageVersion}`);
 });
 
-// The compatibility check compares connected components against this value,
-// so it must track the API version axis together with the three files above.
-packageJson.mcpCompatibility = {
-	...packageJson.mcpCompatibility,
-	expectedApiVersion: packageVersion,
-};
-writeFileSync(
-	packageJsonPath,
-	`${JSON.stringify(packageJson, null, "\t")}\n`,
-	"utf8",
-);
-updatedFiles.push("package.json (mcpCompatibility.expectedApiVersion)");
+// Bridge protocol compatibility is independent of the MCP package release.
 
 console.log(
 	`Synchronized version ${packageVersion} across: ${updatedFiles.join(", ")}`,
